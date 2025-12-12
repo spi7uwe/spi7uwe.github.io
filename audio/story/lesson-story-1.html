@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Story Lesson 1</title>
+  <meta name="description" content="Story lesson with audio + translation." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-title">Language Learning</div>
+        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
+      </div>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="lessons.html">Lessons</a>
+        <a class="nav-link" href="glossary.html">Glossary</a>
+        <a class="nav-link" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card wide">
+      <h1 style="margin:0 0 10px;">Story Lesson 1 — Ciclep & Maggot</h1>
+      <p class="muted" style="margin:0 0 12px;">
+        Play the story audio, then click a line to jump to that moment.
+      </p>
+
+      <!-- Main story audio (make sure this file exists) -->
+      <audio id="storyPlayer" controls preload="metadata" style="width:100%;">
+        <source src="audio/story/xwexweye.mp3" type="audio/mpeg" />
+        Your browser does not support audio.
+      </audio>
+
+      <div class="muted" style="margin-top:10px; font-size:12px;">
+        Audio file: <code>audio/story/xwexweye.mp3</code>
+      </div>
+    </section>
+
+    <!-- Lines -->
+    <section class="grid" style="grid-template-columns:repeat(2,1fr); gap:14px;">
+      <!-- Line 1 -->
+      <article class="card line" data-time="0">
+        <h2 style="margin:0 0 6px;">Le q̓7éses lu7 w7ecekwe r xiymuy r xwixwéye. Kist r xwixwéye.</h2>
+        <div class="muted">Long ago, they say, there was a big maggot. A very bad maggot.</div>
+        <div class="muted" style="margin-top:10px; font-size:12px;">Click to jump • 0:00</div>
+      </article>
+
+      <!-- Line 2 -->
+      <article class="card line" data-time="8">
+        <h2 style="margin:0 0 6px;">Kwens xwexwéyt r stsillén ell r sewllkwe ell cw7it t̓e stém te tmicw…</h2>
+        <div class="muted">He took all the food, the water and all the things from the land…</div>
+        <div class="muted" style="margin-top:10px; font-size:12px;">Click to jump • 0:08</div>
+      </article>
+
+      <!-- Line 3 -->
+      <article class="card line" data-time="18">
+        <h2 style="margin:0 0 6px;">“Oh le7 t’é stsillen! Me7 íllen ke xwexwéyt! Ch ch ch…”</h2>
+        <div class="muted">“Oh, good food. I’m gonna eat it all.” (eating sounds)</div>
+        <div class="muted" style="margin-top:10px; font-size:12px;">Click to jump • 0:18</div>
+      </article>
+    </section>
+
+    <section class="card wide">
+      <h2 style="margin:0 0 10px;">Add more lines</h2>
+      <p class="muted" style="margin:0;">
+        Copy one of the <code>&lt;article class="card line" data-time="..."&gt;</code> blocks and change:
+        the Secwepemctsín line, the English line, and the <code>data-time</code> (seconds).
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© Language Learning</div>
+      <div class="muted">Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    const player = document.getElementById("storyPlayer");
+    document.querySelectorAll(".line").forEach(card => {
+      card.style.cursor = "pointer";
+      card.addEventListener("click", () => {
+        const t = Number(card.dataset.time || "0");
+        player.currentTime = t;
+        player.play().catch(() => {});
+      });
+    });
+  </script>
+</body>
+</html>
