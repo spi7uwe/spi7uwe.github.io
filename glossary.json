@@ -1,12 +1,4 @@
 [
-  { "lang": "sqlelten", "en": "salmon", "note": "" },
-  { "lang": "me7e", "en": "yes", "note": "" },
-  { "lang": "letép", "en": "table", "note": "" },
-  { "lang": "ts̓elcwílep", "en": "chair", "note": "" },
-  { "lang": "sqéxe", "en": "dog", "note": "" },
-  { "lang": "pus", "en": "cat", "note": "" }
-]
-[
   {
     "lang": "sqlelten",
     "en": "salmon",
@@ -19,6 +11,38 @@
     "lang": "me7e",
     "en": "yes",
     "tags": ["response"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  },
+  {
+    "lang": "letép",
+    "en": "table",
+    "tags": ["noun"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  },
+  {
+    "lang": "ts̓elcwílep",
+    "en": "chair",
+    "tags": ["noun"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  },
+  {
+    "lang": "sqéxe",
+    "en": "dog",
+    "tags": ["noun", "animal"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  },
+  {
+    "lang": "pus",
+    "en": "cat",
+    "tags": ["noun", "animal"],
     "example_lang": "",
     "example_en": "",
     "note": ""
