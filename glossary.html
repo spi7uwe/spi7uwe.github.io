@@ -89,14 +89,20 @@
   const cards = document.querySelectorAll(".grid .card");
 
   input.addEventListener("input", () => {
-    const q = input.value.toLowerCase();
+    const q = input.value.toLowerCase().trim();
     cards.forEach(card => {
-      card.style.display = card.textContent.toLowerCase().includes(q)
-        ? ""
-        : "none";
+      const haystack = (
+        (card.dataset.lang || "") + " " +
+        (card.dataset.en || "") + " " +
+        (card.dataset.tags || "") + " " +
+        card.textContent
+      ).toLowerCase();
+
+      card.style.display = haystack.includes(q) ? "" : "none";
     });
   });
 </script>
+
 
 </body>
 </html>
