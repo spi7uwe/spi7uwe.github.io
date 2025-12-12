@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glossary</title>
+  <meta name="description" content="Searchable glossary." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-title">Language Learning</div>
+        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
+      </div>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="lessons.html">Lessons</a>
+        <a class="nav-link active" href="glossary.html">Glossary</a>
+        <a class="nav-link" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card wide">
+      <h1 style="margin:0 0 10px;">Glossary</h1>
+      <p class="muted" style="margin:0 0 12px;">
+        Type to search. This is a starter list—we’ll expand it with your material.
+      </p>
+
+      <input id="q" type="search" placeholder="Search (English or language)…"
+        style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(20,24,38,.6); color:var(--text);"
+        autocomplete="off" />
+    </section>
+
+    <section id="results" class="grid" style="grid-template-columns:repeat(2,1fr);">
+      <!-- results injected here -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Language Learning</div>
+      <div class="muted">Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Starter data — replace/expand with your real entries
+    const DATA = [
+      { lang: "sqlelten", en: "salmon", note: "" },
+      { lang: "me7e", en: "yes", note: "" },
+      { lang: "letép", en: "table", note: "" },
+      { lang: "ts̓elcwílep", en: "chair", note: "" },
+      { lang: "sqéxe", en: "dog", note: "" },
+      { lang: "pus", en: "cat", note: "" }
+    ];
+
+    const q = document.getElementById("q");
+    const results = document.getElementById("results");
+
+    function render(list) {
+      results.innerHTML = "";
+      list.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
+          <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
+          ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
+        `;
+        results.appendChild(card);
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function search() {
+      const term = q.value.trim().toLowerCase();
+      if (!term) return render(DATA);
+
+      const filtered = DATA.filter(x =>
+        x.lang.toLowerCase().includes(term) ||
+        x.en.toLowerCase().includes(term) ||
+        (x.note || "").toLowerCase().includes(term)
+      );
+      render(filtered);
+    }
+
+    q.addEventListener("input", search);
+    render(DATA);
+  </script>
+</body>
+</html>
