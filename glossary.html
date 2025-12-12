@@ -51,14 +51,16 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     // Starter data — replace/expand with your real entries
-    const DATA = [
-      { lang: "sqlelten", en: "salmon", note: "" },
-      { lang: "me7e", en: "yes", note: "" },
-      { lang: "letép", en: "table", note: "" },
-      { lang: "ts̓elcwílep", en: "chair", note: "" },
-      { lang: "sqéxe", en: "dog", note: "" },
-      { lang: "pus", en: "cat", note: "" }
-    ];
+    let DATA = [];
+
+async function loadData() {
+  const res = await fetch("glossary.json", { cache: "no-store" });
+  DATA = await res.json();
+  render(DATA);
+}
+
+loadData();
+
 
     const q = document.getElementById("q");
     const results = document.getElementById("results");
