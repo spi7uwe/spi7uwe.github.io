@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lessons</title>
+  <meta name="description" content="Language lessons." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-title">Language Learning</div>
+        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
+      </div>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link active" href="lessons.html">Lessons</a>
+        <a class="nav-link" href="glossary.html">Glossary</a>
+        <a class="nav-link" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card wide">
+      <h1 style="margin:0 0 8px;">Lessons</h1>
+      <p class="muted" style="margin:0;">
+        Start simple. Keep each lesson short and repeatable.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>Lesson 1</h2>
+        <p>Greetings and first phrases (starter template).</p>
+        <a class="text-link" href="lesson-1.html">Open Lesson 1 →</a>
+      </article>
+
+      <article class="card">
+        <h2>Lesson 2</h2>
+        <p>Placeholder (we’ll build it next).</p>
+        <span class="muted">Coming soon</span>
+      </article>
+
+      <article class="card">
+        <h2>Lesson 3</h2>
+        <p>Placeholder (we’ll build it next).</p>
+        <span class="muted">Coming soon</span>
+      </article>
+    </section>
+
+    <section class="card wide">
+      <h2>How we’ll build lessons</h2>
+      <ol class="muted" style="margin:0; padding-left:18px;">
+        <li>5–10 phrases max</li>
+        <li>Each phrase has: language + English + (optional) audio</li>
+        <li>Repeat section at the end</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Language Learning</div>
+      <div class="muted">Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
