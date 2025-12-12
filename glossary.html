@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Glossary</title>
-  <meta name="description" content="Searchable glossary." />
+  <meta name="description" content="Glossary." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -25,107 +25,48 @@
 
   <main class="container">
     <section class="card wide">
-      <h1 style="margin:0 0 10px;">Glossary</h1>
-      <p class="muted" style="margin:0 0 12px;">
-        Type to search. If JSON loading fails, the starter list will still display.
-      </p>
-
-      <input id="q" type="search" placeholder="Search (English or language)…"
-        style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(20,24,38,.6); color:var(--text);"
-        autocomplete="off" />
-
-      <div id="status" class="muted" style="margin-top:10px; font-size:13px;"></div>
+      <h1>Glossary</h1>
+      <p class="muted">Starter vocabulary list.</p>
     </section>
 
-    <section id="results" class="grid" style="grid-template-columns:repeat(2,1fr);">
-      <!-- results injected here -->
+    <section class="grid" style="grid-template-columns:repeat(2,1fr);">
+      <article class="card">
+        <h2>sqlelten</h2>
+        <div class="muted">salmon</div>
+      </article>
+
+      <article class="card">
+        <h2>me7e</h2>
+        <div class="muted">yes</div>
+      </article>
+
+      <article class="card">
+        <h2>letép</h2>
+        <div class="muted">table</div>
+      </article>
+
+      <article class="card">
+        <h2>ts̓elcwílep</h2>
+        <div class="muted">chair</div>
+      </article>
+
+      <article class="card">
+        <h2>sqéxe</h2>
+        <div class="muted">dog</div>
+      </article>
+
+      <article class="card">
+        <h2>pus</h2>
+        <div class="muted">cat</div>
+      </article>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="muted">© <span id="year"></span> Language Learning</div>
+      <div class="muted">© Language Learning</div>
       <div class="muted">Hosted on GitHub Pages</div>
     </div>
   </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const q = document.getElementById("q");
-    const results = document.getElementById("results");
-    const statusEl = document.getElementById("status");
-
-    function escapeHtml(s) {
-      return String(s ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // Always-works starter list (so the page can’t be blank)
-    let DATA = [
-      { "lang": "sqlelten", "en": "salmon", "note": "" },
-      { "lang": "me7e", "en": "yes", "note": "" },
-      { "lang": "letép", "en": "table", "note": "" },
-      { "lang": "ts̓elcwílep", "en": "chair", "note": "" },
-      { "lang": "sqéxe", "en": "dog", "note": "" },
-      { "lang": "pus", "en": "cat", "note": "" }
-    ];
-
-    function render(list) {
-      results.innerHTML = "";
-      if (!Array.isArray(list) || list.length === 0) {
-        results.innerHTML = `
-          <article class="card" style="grid-column:1 / -1;">
-            <h2 style="margin:0 0 6px;">No results</h2>
-            <div class="muted">Try a different search term.</div>
-          </article>`;
-        return;
-      }
-
-      list.forEach(item => {
-        const card = document.createElement("article");
-        card.className = "card";
-        card.innerHTML = `
-          <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
-          <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
-          ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
-        `;
-        results.appendChild(card);
-      });
-    }
-
-    function search() {
-      const term = q.value.trim().toLowerCase();
-      if (!term) return render(DATA);
-
-      const filtered = DATA.filter(x =>
-        String(x.lang ?? "").toLowerCase().includes(term) ||
-        String(x.en ?? "").toLowerCase().includes(term) ||
-        String(x.note ?? "").toLowerCase().includes(term)
-      );
-
-      render(filtered);
-    }
-
-    q.addEventListener("input", search);
-
-    // Try to load glossary.json, but never allow failure to blank the page
-    async function tryLoadJson() {
-      try {
-        statusEl.textContent = "Loading glossary.json…";
-        const res = await fetch("/glossary.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-        const json = await res.json();
-        if (Array.isArray(json) && json.length) {
-          DATA = json;
-          statusEl.textContent = `Loaded ${DATA.length} entries from glossary.json.`;
-        } else {
-          statusEl.textContent = "glossary.json loaded but was empty — showing starter list.";
-        }
-      } catch (e) {
-        statusEl.textContent = "Could not load glossary.json — showing starter list.";
-      } finally
+</body>
+</html>
