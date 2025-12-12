@@ -6,3 +6,21 @@
   { "lang": "sqéxe", "en": "dog", "note": "" },
   { "lang": "pus", "en": "cat", "note": "" }
 ]
+[
+  {
+    "lang": "sqlelten",
+    "en": "salmon",
+    "tags": ["noun", "food"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  },
+  {
+    "lang": "me7e",
+    "en": "yes",
+    "tags": ["response"],
+    "example_lang": "",
+    "example_en": "",
+    "note": ""
+  }
+]
