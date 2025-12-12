@@ -197,3 +197,14 @@ body {
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Click-to-play cards */
+.card[data-audio] {
+  cursor: pointer;
+  user-select: none;
+}
+.card[data-audio]:hover {
+  outline: 1px solid rgba(255,255,255,0.12);
+}
+.card.playing {
+  outline: 1px solid rgba(255,255,255,0.25);
+}
