@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About</title>
+  <meta name="description" content="About this site." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-title">Language Learning</div>
+        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
+      </div>
+      <nav class="nav">
+        <a class="nav-link" href="index.html">Home</a>
+        <a class="nav-link" href="lessons.html">Lessons</a>
+        <a class="nav-link" href="glossary.html">Glossary</a>
+        <a class="nav-link active" href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card wide">
+      <h1 style="margin:0 0 10px;">About</h1>
+      <p class="muted" style="margin:0 0 12px;">
+        This is a living project. We’ll keep improving it over time.
+      </p>
+
+      <div class="card" style="margin-top:14px;">
+        <h2>What this site includes</h2>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li>Short lessons</li>
+          <li>Glossary / vocabulary</li>
+          <li>Practice tools</li>
+        </ul>
+      </div>
+
+      <div class="card" style="margin-top:14px;">
+        <h2>Update plan</h2>
+        <ol class="muted" style="margin:0; padding-left:18px;">
+          <li>Add Lesson 1 content</li>
+          <li>Expand glossary entries</li>
+          <li>Add audio clips</li>
+          <li>Add flashcards and quizzes</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© <span id="year"></span> Language Learning</div>
+      <div class="muted">Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
