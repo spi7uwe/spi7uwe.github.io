@@ -192,71 +192,49 @@
   const input = document.getElementById("search");
   const cards = document.querySelectorAll(".grid .card");
 
-  // Shared player (prevents overlapping audio)
+  // One shared player so sounds don't overlap
   const player = new Audio();
   player.preload = "none";
 
-  // Add Play buttons to each card
+  let currentCard = null;
+
+  function clearPlaying() {
+    cards.forEach(c => c.classList.remove("playing"));
+  }
+
+  // Click-anywhere-to-play
   cards.forEach(card => {
     const audioFile = card.dataset.audio; // e.g. "sqlelten.mp3"
+    if (!audioFile) return; // cards without audio do nothing
 
-    const row = document.createElement("div");
-    row.style.marginTop = "12px";
-    row.style.display = "flex";
-    row.style.gap = "10px";
-    row.style.alignItems = "center";
+    card.addEventListener("click", () => {
+      const url = `audio/${audioFile}`;
 
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.textContent = "Play";
-    btn.style.padding = "8px 12px";
-    btn.style.borderRadius = "10px";
-    btn.style.border = "1px solid var(--border)";
-    btn.style.background = "rgba(20,24,38,.45)";
-    btn.style.color = "var(--text)";
-    btn.style.cursor = "pointer";
+      // Toggle pause if clicking the same card that's playing
+      if (currentCard === card && !player.paused) {
+        player.pause();
+        card.classList.remove("playing");
+        return;
+      }
 
-    const msg = document.createElement("span");
-    msg.style.fontSize = "12px";
-    msg.style.color = "var(--muted)";
+      currentCard = card;
+      clearPlaying();
+      card.classList.add("playing");
 
-    if (!audioFile) {
-      btn.disabled = true;
-      btn.style.opacity = "0.5";
-      msg.textContent = "No audio linked";
-    } else {
-      btn.addEventListener("click", () => {
-        const url = `audio/${audioFile}`;
-
-        // Toggle if same file is currently playing
-        if (player.src.endsWith("/" + url) && !player.paused) {
-          player.pause();
-          btn.textContent = "Play";
-          msg.textContent = "";
-          return;
-        }
-
-        player.src = url;
-        player.play().then(() => {
-          btn.textContent = "Pause";
-          msg.textContent = "";
-        }).catch(() => {
-          btn.textContent = "Play";
-          msg.textContent = "Click anywhere on page once, then try again";
-        });
+      player.src = url;
+      player.play().catch(() => {
+        alert("Audio could not play. Try clicking once anywhere on the page, then click the card again.");
+        card.classList.remove("playing");
       });
-
-      player.addEventListener("ended", () => {
-        btn.textContent = "Play";
-      });
-    }
-
-    row.appendChild(btn);
-    row.appendChild(msg);
-    card.appendChild(row);
+    });
   });
 
-  // Search filter (still works)
+  player.addEventListener("ended", () => {
+    if (currentCard) currentCard.classList.remove("playing");
+    currentCard = null;
+  });
+
+  // Search filter
   input.addEventListener("input", () => {
     const q = input.value.toLowerCase().trim();
     cards.forEach(card => {
@@ -272,3 +250,4 @@
     });
   });
 </script>
+
