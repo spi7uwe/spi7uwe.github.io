@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 1</title>
   <meta name="description" content="Lesson 1 — starter template." />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/styles.css" />
+
 </head>
 <body>
   <header class="site-header">
@@ -51,9 +52,36 @@
           </div>
         </article>
 
-        <!-- Phrase 2 -->
+               <!-- Phrase 2 -->
         <article class="card">
           <h3 style="margin:0 0 8px;">T’he7e k s’tekuc?</h3>
           <div class="muted">Where are you from?</div>
           <div style="margin-top:12px;">
-            <button class="button secondary" type="button" onclick="playAudio('audio2
+            <button class="button secondary" type="button" onclick="playAudio('audio2')">
+              Play audio (optional)
+            </button>
+            <audio id="audio2" src=""></audio>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="muted">© Language Learning</div>
+      <div class="muted">Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    function playAudio(id) {
+      const el = document.getElementById(id);
+      if (!el || !el.src) return; // no audio linked yet
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    }
+  </script>
+</body>
+</html>
