@@ -70,14 +70,25 @@ loadData();
       list.forEach(item => {
         const card = document.createElement("article");
         card.className = "card";
-        card.innerHTML = `
-          <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
-          <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
-          ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
-        `;
-        results.appendChild(card);
-      });
-    }
+        const tags = Array.isArray(item.tags) ? item.tags : [];
+const tagsHtml = tags.length
+  ? `<div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
+       ${tags.map(t => `<span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); background:rgba(20,24,38,.35);">${escapeHtml(t)}</span>`).join("")}
+     </div>`
+  : "";
+
+const exLang = item.example_lang ? `<div style="margin-top:12px; font-weight:600;">${escapeHtml(item.example_lang)}</div>` : "";
+const exEn = item.example_en ? `<div class="muted" style="margin-top:4px;">${escapeHtml(item.example_en)}</div>` : "";
+
+card.innerHTML = `
+  <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
+  <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
+  ${tagsHtml}
+  ${exLang}
+  ${exEn}
+  ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
+`;
+
 
     function escapeHtml(s) {
       return String(s)
