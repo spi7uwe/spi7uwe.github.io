@@ -27,12 +27,14 @@
     <section class="card wide">
       <h1 style="margin:0 0 10px;">Glossary</h1>
       <p class="muted" style="margin:0 0 12px;">
-        Type to search. This is a starter list—we’ll expand it with your material.
+        Type to search. Data loads from <b>glossary.json</b>.
       </p>
 
       <input id="q" type="search" placeholder="Search (English or language)…"
         style="width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(20,24,38,.6); color:var(--text);"
         autocomplete="off" />
+
+      <div id="status" class="muted" style="margin-top:10px; font-size:13px;"></div>
     </section>
 
     <section id="results" class="grid" style="grid-template-columns:repeat(2,1fr);">
@@ -50,48 +52,13 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Starter data — replace/expand with your real entries
-    let DATA = [];
-
-async function loadData() {
-  const res = await fetch("glossary.json", { cache: "no-store" });
-  DATA = await res.json();
-  render(DATA);
-}
-
-loadData();
-
-
     const q = document.getElementById("q");
     const results = document.getElementById("results");
-
-    function render(list) {
-      results.innerHTML = "";
-      list.forEach(item => {
-        const card = document.createElement("article");
-        card.className = "card";
-        const tags = Array.isArray(item.tags) ? item.tags : [];
-const tagsHtml = tags.length
-  ? `<div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-       ${tags.map(t => `<span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); background:rgba(20,24,38,.35);">${escapeHtml(t)}</span>`).join("")}
-     </div>`
-  : "";
-
-const exLang = item.example_lang ? `<div style="margin-top:12px; font-weight:600;">${escapeHtml(item.example_lang)}</div>` : "";
-const exEn = item.example_en ? `<div class="muted" style="margin-top:4px;">${escapeHtml(item.example_en)}</div>` : "";
-
-card.innerHTML = `
-  <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
-  <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
-  ${tagsHtml}
-  ${exLang}
-  ${exEn}
-  ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
-`;
-
+    const statusEl = document.getElementById("status");
+    let DATA = [];
 
     function escapeHtml(s) {
-      return String(s)
+      return String(s ?? "")
         .replaceAll("&","&amp;")
         .replaceAll("<","&lt;")
         .replaceAll(">","&gt;")
@@ -99,20 +66,97 @@ card.innerHTML = `
         .replaceAll("'","&#039;");
     }
 
+    function render(list) {
+      results.innerHTML = "";
+
+      if (!Array.isArray(list) || list.length === 0) {
+        results.innerHTML = `
+          <article class="card" style="grid-column:1 / -1;">
+            <h2 style="margin:0 0 6px;">No entries to display</h2>
+            <div class="muted">If this is unexpected, the JSON may not be loading or may be empty.</div>
+          </article>
+        `;
+        return;
+      }
+
+      list.forEach(item => {
+        const tags = Array.isArray(item.tags) ? item.tags : [];
+        const tagsHtml = tags.length
+          ? `<div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
+               ${tags.map(t => `<span style="font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:999px; color:var(--muted); background:rgba(20,24,38,.35);">${escapeHtml(t)}</span>`).join("")}
+             </div>`
+          : "";
+
+        const exLang = item.example_lang ? `<div style="margin-top:12px; font-weight:600;">${escapeHtml(item.example_lang)}</div>` : "";
+        const exEn = item.example_en ? `<div class="muted" style="margin-top:4px;">${escapeHtml(item.example_en)}</div>` : "";
+
+        const card = document.createElement("article");
+        card.className = "card";
+        card.innerHTML = `
+          <h2 style="margin:0 0 6px;">${escapeHtml(item.lang)}</h2>
+          <div class="muted" style="font-size:15px;">${escapeHtml(item.en)}</div>
+          ${tagsHtml}
+          ${exLang}
+          ${exEn}
+          ${item.note ? `<div class="muted" style="margin-top:10px; font-size:13px;">${escapeHtml(item.note)}</div>` : ""}
+        `;
+        results.appendChild(card);
+      });
+    }
+
     function search() {
       const term = q.value.trim().toLowerCase();
       if (!term) return render(DATA);
 
-      const filtered = DATA.filter(x =>
-        x.lang.toLowerCase().includes(term) ||
-        x.en.toLowerCase().includes(term) ||
-        (x.note || "").toLowerCase().includes(term)
-      );
+      const filtered = DATA.filter(x => {
+        const lang = String(x.lang ?? "").toLowerCase();
+        const en = String(x.en ?? "").toLowerCase();
+        const note = String(x.note ?? "").toLowerCase();
+        const exl = String(x.example_lang ?? "").toLowerCase();
+        const exe = String(x.example_en ?? "").toLowerCase();
+        const tags = Array.isArray(x.tags) ? x.tags.join(" ").toLowerCase() : "";
+
+        return lang.includes(term) || en.includes(term) || note.includes(term) || exl.includes(term) || exe.includes(term) || tags.includes(term);
+      });
+
       render(filtered);
     }
 
     q.addEventListener("input", search);
-    render(DATA);
+
+    async function loadData() {
+      try {
+        statusEl.textContent = "Loading glossary.json…";
+
+        // Use absolute path to remove any “relative path” ambiguity.
+        const res = await fetch("/glossary.json", { cache: "no-store" });
+
+        if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${res.statusText}`);
+
+        DATA = await res.json();
+
+        if (!Array.isArray(DATA)) {
+          throw new Error("glossary.json loaded, but it is not a JSON array.");
+        }
+
+        statusEl.textContent = `Loaded ${DATA.length} entries.`;
+        render(DATA);
+      } catch (err) {
+        statusEl.textContent = "Glossary failed to load.";
+        results.innerHTML = `
+          <article class="card" style="grid-column:1 / -1;">
+            <h2 style="margin:0 0 6px;">Glossary failed to load</h2>
+            <div class="muted" style="margin-top:8px;">${escapeHtml(err.message)}</div>
+            <div class="muted" style="margin-top:10px;">
+              Confirm <b>https://spi7uwe.github.io/glossary.json</b> opens and contains valid JSON.
+            </div>
+          </article>
+        `;
+        console.error(err);
+      }
+    }
+
+    loadData();
   </script>
 </body>
 </html>
