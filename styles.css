@@ -235,3 +235,51 @@ body {
   color: var(--text);
   opacity: 0.95;
 }
+/* HOME HERO (Secwepemctsín-first) */
+.hero{
+  margin-top: 22px;
+  padding: 24px 0 34px;
+}
+
+.hero-card{
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 44px 38px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(900px 420px at 20% 0%, rgba(120,160,255,.22), transparent 60%),
+    radial-gradient(700px 380px at 90% 40%, rgba(255,120,170,.12), transparent 55%),
+    linear-gradient(180deg, rgba(20,24,38,.85), rgba(12,14,24,.85));
+  box-shadow: 0 18px 55px rgba(0,0,0,.45);
+}
+
+.hero-card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(600px 240px at 30% 10%, rgba(255,255,255,.08), transparent 60%);
+  pointer-events:none;
+}
+
+.hero-title-sq{
+  margin: 0 0 12px;
+  font-size: clamp(34px, 5vw, 62px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.hero-sub{
+  margin: 0 0 24px;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+.hero-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
