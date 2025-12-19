@@ -2,159 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="0; url=/audio/story/lesson-story-1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lesson 1 — Xwixwéye</title>
-  <meta name="description" content="Lesson 1 — Xwixwéye (Maggot & Coyote) story lesson." />
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="canonical" href="/audio/story/lesson-story-1.html" />
+  <style>
+    body{margin:0;background:#050505;color:#f4f4f4;font-family:system-ui,Segoe UI,Inter,Arial,sans-serif;display:grid;place-items:center;min-height:100vh}
+    a{color:#9fb7ff}
+  </style>
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-title">Language Learning</div>
-        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
-      </div>
-      <nav class="nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link active" href="lessons.html">Lessons</a>
-        <a class="nav-link" href="glossary.html">Glossary</a>
-        <a class="nav-link" href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-
-    <!-- Title / Identity -->
-    <section class="card wide">
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <div>
-          <h1 style="margin:0 0 6px;">Lesson 1 — Xwixwéye</h1>
-          <p class="muted" style="margin:0;">Maggot &amp; Coyote story lesson.</p>
-        </div>
-
-        <a class="button secondary" href="lessons.html" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">
-          ← Back to Lessons
-        </a>
-      </div>
-    </section>
-
-    <!-- How to use this lesson -->
-    <section class="card wide">
-      <h2 style="margin-top:0;">How to use this lesson</h2>
-      <ol class="muted" style="margin-top:-6px; line-height:1.6;">
-        <li>Start with 5–10 short lines.</li>
-        <li>Each line has: Secwepemctsín + English + (optional) audio.</li>
-        <li>Repeat the same lines at the end for practice.</li>
-      </ol>
-    </section>
-
-    <!-- Core phrases / story lines -->
-    <section class="card wide">
-      <h2 style="margin-top:0;">Story lines (starter set)</h2>
-      <p class="muted" style="margin-top:-6px;">
-        This page is ready for your Xwixwéye lines. Add more cards as you build the story.
-      </p>
-
-      <div class="grid" style="grid-template-columns:repeat(2,1fr);">
-
-        <!-- Line 1 -->
-        <article class="card">
-          <h3 style="margin:0 0 8px;">me7e</h3>
-          <div class="muted">Yes</div>
-          <div style="margin-top:12px;">
-            <button class="button secondary" type="button" onclick="playAudio('audio1')">
-              Play audio
-            </button>
-            <!-- Put your audio file path here later -->
-            <audio id="audio1" src=""></audio>
-          </div>
-        </article>
-
-        <!-- Line 2 -->
-        <article class="card">
-          <h3 style="margin:0 0 8px;">T’he7e k s’tekuc?</h3>
-          <div class="muted">Where are you from?</div>
-          <div style="margin-top:12px;">
-            <button class="button secondary" type="button" onclick="playAudio('audio2')">
-              Play audio
-            </button>
-            <audio id="audio2" src=""></audio>
-          </div>
-        </article>
-
-        <!-- Line 3 (placeholder) -->
-        <article class="card">
-          <h3 style="margin:0 0 8px;">[Add Xwixwéye line]</h3>
-          <div class="muted">[English meaning]</div>
-          <div style="margin-top:12px;">
-            <button class="button secondary" type="button" onclick="playAudio('audio3')">
-              Play audio
-            </button>
-            <audio id="audio3" src=""></audio>
-          </div>
-        </article>
-
-        <!-- Line 4 (placeholder) -->
-        <article class="card">
-          <h3 style="margin:0 0 8px;">[Add Xwixwéye line]</h3>
-          <div class="muted">[English meaning]</div>
-          <div style="margin-top:12px;">
-            <button class="button secondary" type="button" onclick="playAudio('audio4')">
-              Play audio
-            </button>
-            <audio id="audio4" src=""></audio>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Repeat section -->
-    <section class="card wide">
-      <h2 style="margin-top:0;">Repeat (practice)</h2>
-      <p class="muted" style="margin-top:-6px;">
-        Repeat the same lines again. You can remove English later if you want immersion mode.
-      </p>
-
-      <div class="grid" style="grid-template-columns:repeat(2,1fr);">
-
-        <article class="card">
-          <h3 style="margin:0 0 8px;">me7e</h3>
-          <div class="muted">Yes</div>
-        </article>
-
-        <article class="card">
-          <h3 style="margin:0 0 8px;">T’he7e k s’tekuc?</h3>
-          <div class="muted">Where are you from?</div>
-        </article>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="muted">Ne Secwepemcúl̓ecw</div>
-      <div class="muted">Hosted on GitHub Pages</div>
-    </div>
-  </footer>
-
-  <script>
-    function playAudio(id) {
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      // If no audio is linked yet, do nothing.
-      // (We check BOTH attribute and resolved src because browsers can resolve to a page URL.)
-      const attr = el.getAttribute('src');
-      if (!attr || !attr.trim()) return;
-
-      el.currentTime = 0;
-      el.play().catch(() => {});
-    }
-  </script>
+  <div>
+    <p>Opening Lesson 1…</p>
+    <p><a href="/audio/story/lesson-story-1.html">Click here if you are not redirected</a></p>
+  </div>
 </body>
 </html>
