@@ -1,110 +1,88 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>About</title>
-  <meta name="description" content="About this Secwépemctsín language project." />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <title>Secwepemctsín</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Optional font: clean, modern, readable -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* RESET */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #050505;
+      color: #f4f4f4;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%),
+        linear-gradient(to bottom, #000 0%, #070707 100%);
+    }
+
+    .secwepemc {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .english {
+      margin-top: 1.5rem;
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      font-weight: 300;
+      opacity: 0.75;
+      max-width: 720px;
+    }
+
+    /* FOOTER */
+    footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.85rem;
+      opacity: 0.4;
+    }
+
+    @media (max-height: 600px) {
+      footer {
+        position: static;
+        margin-top: 3rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="brand-title">Language Learning</div>
-        <div class="brand-subtitle">Lessons • Glossary • Practice</div>
-      </div>
-      <nav class="nav">
-        <a class="nav-link" href="index.html">Home</a>
-        <a class="nav-link" href="lessons.html">Lessons</a>
-        <a class="nav-link" href="glossary.html">Glossary</a>
-        <a class="nav-link active" href="about.html">About</a>
-      </nav>
-    </div>
-  </header>
 
-  <main class="container">
-    <section class="card wide">
-      <h1 style="margin:0 0 10px;">About This Project</h1>
-      <p class="muted" style="margin:0;">
-        A living space for Secwépemctsín language, culture, and continuity.
-      </p>
-    </section>
+  <section class="hero">
+    <h1 class="secwepemc">
+      Secwepemctsném kt wel me7 yews!
+    </h1>
 
-    <section class="card wide">
-      <h2>What this site is</h2>
-      <p class="muted">
-        This site is dedicated to <strong>Secwépemctsín</strong>, the language of the
-        Secwépemc people.
-      </p>
-      <p class="muted">
-        It exists to support speaking, listening, and remembering through real words,
-        real voices, and real stories. Secwépemctsín is treated here not as an academic
-        subject, but as a living language meant to be spoken, heard, and carried forward.
-      </p>
-    </section>
+    <h2 class="english">
+      We speak Secwepemctsín forever.
+    </h2>
 
-    <section class="card wide">
-      <h2>Language and awakening</h2>
-      <p style="font-size:20px; font-weight:600; margin-bottom:6px;">
-        Secwépemctsín-kt wel me7 yéws.
-      </p>
-      <p class="muted" style="margin-top:0;">
-        We will speak Secwépemctsín forever.
-      </p>
-      <p class="muted">
-        Language carries more than vocabulary. It carries ways of thinking, ways of
-        relating, and ways of knowing who we are.
-      </p>
-      <p class="muted">
-        By speaking Secwépemctsín, we awaken memory — cultural, ancestral, and personal.
-        This awakening happens through sound, repetition, story, and everyday use.
-      </p>
-    </section>
+    <footer>
+      Nə Secwepemcúl̓ecw
+    </footer>
+  </section>
 
-    <section class="card wide">
-      <h2>Culture through story</h2>
-      <p class="muted">
-        Stories are one of the oldest ways language is held and passed on.
-      </p>
-      <p class="muted">
-        The lessons and story recordings on this site are meant to be listened to,
-        returned to, and spoken aloud. Through story, language stays connected to land,
-        teaching, and lived experience.
-      </p>
-    </section>
-
-    <section class="card wide">
-      <h2>How to use this space</h2>
-      <ul class="muted" style="padding-left:18px; margin:0;">
-        <li>Listen before reading</li>
-        <li>Speak the language out loud</li>
-        <li>Do not worry about perfection</li>
-        <li>Return often — language grows with use</li>
-      </ul>
-    </section>
-
-    <section class="card wide">
-      <h2>Ongoing</h2>
-      <p class="muted">
-        This site will continue to grow with more lessons, stories, and recordings.
-      </p>
-      <p class="muted">
-        It is intentionally simple, so it can remain accessible and usable for future
-        generations.
-      </p>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="muted">© <span id="year"></span> Language Learning</div>
-      <div class="muted">Hosted on GitHub Pages</div>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
