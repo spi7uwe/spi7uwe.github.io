@@ -313,3 +313,40 @@ body {
 .hide-english .story-eng{
   display: none;
 }
+/* ===== Mobile polish ===== */
+@media (max-width: 600px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 14px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .story-sec {
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .story-eng {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  audio {
+    width: 100%;
+  }
+}
