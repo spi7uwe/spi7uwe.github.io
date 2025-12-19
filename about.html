@@ -2,87 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Secwepemctsín</title>
+  <title>About — Secwepemctsín</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Optional font: clean, modern, readable -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* RESET */
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #050505;
       color: #f4f4f4;
+      line-height: 1.7;
     }
 
-    /* HERO SECTION */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    header {
+      padding: 2rem 1.5rem;
       text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.85;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+    }
+
+    nav a:hover {
+      opacity: 1;
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
       padding: 3rem 1.5rem;
-      background:
-        radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%),
-        linear-gradient(to bottom, #000 0%, #070707 100%);
+    }
+
+    .hero-line {
+      padding: 1.25rem 1.25rem;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.06), transparent 60%);
+      margin-bottom: 2.5rem;
     }
 
     .secwepemc {
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: 1.7rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      line-height: 1.2;
-      margin: 0;
+      letter-spacing: 0.02em;
+      margin: 0 0 0.5rem 0;
     }
 
     .english {
-      margin-top: 1.5rem;
-      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      margin: 0;
+      opacity: 0.78;
       font-weight: 300;
+      font-size: 1.05rem;
+    }
+
+    section { margin-bottom: 3.25rem; }
+
+    h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin: 0 0 1rem 0;
+    }
+
+    p {
+      margin: 0 0 1.2rem 0;
+      font-weight: 300;
+      opacity: 0.96;
+    }
+
+    .note {
+      font-size: 0.98rem;
       opacity: 0.75;
-      max-width: 720px;
+      border-left: 3px solid rgba(255,255,255,0.22);
+      padding-left: 1rem;
+      margin-top: 1.25rem;
     }
 
-    /* FOOTER */
     footer {
-      position: absolute;
-      bottom: 1rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
       font-size: 0.85rem;
-      opacity: 0.4;
-    }
-
-    @media (max-height: 600px) {
-      footer {
-        position: static;
-        margin-top: 3rem;
-      }
+      opacity: 0.45;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
   </style>
 </head>
 
 <body>
 
-  <section class="hero">
-    <h1 class="secwepemc">
-      Secwepemctsném kt wel me7 yews!
-    </h1>
+  <header>
+    <h1>About</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <!-- If you create these later, keep the links; otherwise remove them -->
+      <a href="lessons.html">Lessons</a>
+      <a href="glossary.html">Glossary</a>
+    </nav>
+  </header>
 
-    <h2 class="english">
-      We speak Secwepemctsín forever.
-    </h2>
+  <main>
 
-    <footer>
-      Nə Secwepemcúl̓ecw
-    </footer>
-  </section>
+    <div class="hero-line">
+      <p class="secwepemc">Secwepemctsném kt wel me7 yews.</p>
+      <p class="english">We speak Secwepemctsín forever.</p>
+    </div>
+
+    <section>
+      <h2>What this is</h2>
+      <p>
+        This is a Secwepemctsín language space: for speaking, listening, learning,
+        and carrying the language forward in real life.
+      </p>
+      <p>
+        The goal is not “content.” The goal is use: words in motion, voices in context,
+        and language that stays connected to land, family, and responsibility.
+      </p>
+    </section>
+
+    <section>
+      <h2>Language-first</h2>
+      <p>
+        Secwepemctsín is not a novelty and not a museum piece. It is a living language.
+        This site puts the language first, and English second.
+      </p>
+      <p class="note">
+        If you hear mixed phrasing, rhythm, or unusual segments in recordings,
+        that is part of spoken expression. The language remains Secwepemctsín.
+      </p>
+    </section>
+
+    <section>
+      <h2>Awakening through language</h2>
+      <p>
+        Language carries memory. It carries teachings, humour, relationship, and law.
+        Speaking it is a way of awakening who we are — not as an idea, but as practice.
+      </p>
+      <p>
+        This work is grounded in lived use: lessons, phrases, stories, and recordings that grow over time.
+      </p>
+    </section>
+
+    <section>
+      <h2>What this is not</h2>
+      <p>
+        This is not branding, not institutional ownership, and not permission-based identity.
+        It is speaker-led and community-rooted.
+      </p>
+    </section>
+
+    <section>
+      <h2>Living and unfinished</h2>
+      <p>
+        This site will evolve. There will be corrections. Some things will be refined.
+        That is normal for living language work.
+      </p>
+      <p>
+        Perfection freezes language. Use keeps it alive.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    Nə Secwepemcúl̓ecw
+  </footer>
 
 </body>
 </html>
