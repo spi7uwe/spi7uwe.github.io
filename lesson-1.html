@@ -150,6 +150,15 @@
     <div class="muted">Hosted on GitHub Pages</div>
   </div>
 </footer>
+<script>
+  function toggleEnglish(){
+    document.body.classList.toggle('hide-english');
+    const btn = document.getElementById('engToggle');
+    btn.textContent = document.body.classList.contains('hide-english')
+      ? 'Show English'
+      : 'Hide English';
+  }
+</script>
 
 </body>
 </html>
