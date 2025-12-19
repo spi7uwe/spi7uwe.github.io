@@ -283,3 +283,29 @@ body {
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Story cards (Lesson pages) */
+.story-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  margin-top: 12px;
+}
+
+@media (max-width: 900px){
+  .story-grid{ grid-template-columns:1fr; }
+}
+
+.story-sec{
+  margin: 0 0 6px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.story-eng{
+  margin: 0;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.55;
+}
