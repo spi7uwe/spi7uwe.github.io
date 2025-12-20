@@ -373,3 +373,12 @@ body {
     padding: 26px 20px;
   }
 }
+/* Mobile headline correction */
+@media (max-width: 600px){
+  .hero-title-sq{
+    font-size: clamp(26px, 7vw, 34px);
+    line-height: 1.15;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
