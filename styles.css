@@ -123,6 +123,11 @@ body {
   border-radius: 12px;
   font-weight: 600;
 }
+/* Make buttons phone-friendly (touch size) */
+.button {
+  min-height: 44px; /* thumb-friendly */
+  padding: 10px 16px;
+}
 
 .button.secondary {
   background: transparent;
