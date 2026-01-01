@@ -9,163 +9,182 @@
 
   <style>
     * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000;
+    body{
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       color: #f5f5f5;
-      min-height: 100vh;
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      animation: fadeIn 1.2s ease-out;
+      background: #000;
+      overflow-x: hidden;
     }
 
     /* Background image */
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background-image: url("images/home-hero.png"); /* <-- your file here */
+    .bg{
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(0,0,0,0.20), rgba(0,0,0,0.85) 70%),
+        linear-gradient(180deg, rgba(0,0,0,0.30), rgba(0,0,0,0.92)),
+        url("images/home.jpg");
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      transform: scale(1.03);
-      filter: saturate(1.05) contrast(1.05);
+      filter: saturate(1.05) contrast(1.06);
+      transform: scale(1.02);
+      z-index: -2;
     }
 
-    /* Dark overlay for readability */
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 50% 25%, rgba(0,0,0,0.25), rgba(0,0,0,0.80) 70%),
-        linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.78));
+    /* Soft glow vignette */
+    .vignette{
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 35%, rgba(255,255,255,0.06), transparent 55%);
+      z-index: -1;
+      pointer-events: none;
+      mix-blend-mode: screen;
     }
 
-    /* Content layer above background */
-    .content{
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      width: 100%;
-      padding: 1rem;
+    .hero{
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px 18px 90px;
+      text-align: center;
     }
 
-    h1 {
+    .stack{
+      width: min(980px, 100%);
+      padding: 34px 22px;
+      border-radius: 26px;
+      background: rgba(0,0,0,0.40);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+    }
+
+    /* MAIN TITLE */
+    .title{
       margin: 0;
       font-weight: 800;
-      letter-spacing: 0.02em;
-
-      /* key fix: smaller on phones, bigger on desktop */
-      font-size: clamp(1.8rem, 6vw, 3.6rem);
-      line-height: 1.08;
-
-      text-shadow: 0 10px 30px rgba(0,0,0,0.55);
-    }
-
-    h2 {
-      margin: 1rem 0 0;
-      font-size: clamp(1rem, 3.2vw, 1.25rem);
-      font-weight: 300;
-      opacity: 0.88;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.55);
-    }
-
-    /* Territory line */
-    .territory {
-      position: absolute;
-      bottom: 1.25rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.9rem;
-      opacity: 0.75;
-      white-space: nowrap;
-      pointer-events: none;
-      z-index: 2;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.55);
-    }
-
-    /* Nav buttons */
-    .nav {
-      margin-top: 1.8rem;
-      display: flex;
-      gap: 0.75rem;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-size: clamp(40px, 7vw, 84px);
+      text-shadow: 0 10px 40px rgba(0,0,0,0.65);
+      display: inline-flex;
+      align-items: baseline;
       justify-content: center;
       flex-wrap: wrap;
+      gap: 10px; /* controls closeness between parts */
     }
 
-    .nav a {
-      color: #f5f5f5;
+    .title .dash{
+      font-weight: 600;
+      opacity: 0.85;
+      font-size: 0.70em;  /* SMALL dash */
+      transform: translateY(-0.02em);
+    }
+
+    .title .kt{
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-left: -2px; /* pulls kt closer */
+    }
+
+    /* SUBTITLE: wel me7 yews */
+    .subline{
+      margin: 14px 0 10px;
+      font-size: clamp(20px, 3.2vw, 30px); /* BIGGER */
+      font-weight: 700;
+      opacity: 0.95;
+      letter-spacing: -0.01em;
+      text-shadow: 0 8px 30px rgba(0,0,0,0.65);
+    }
+
+    .english{
+      margin: 0 0 22px;
+      font-weight: 300;
+      font-size: clamp(14px, 2.3vw, 18px);
+      opacity: 0.78;
+    }
+
+    /* Buttons */
+    .nav{
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .nav a{
+      color: #fff;
       text-decoration: none;
-      font-size: 0.95rem;
-      opacity: 0.92;
-      padding: 0.65rem 1rem;
-      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 16px;
       border-radius: 999px;
-      backdrop-filter: blur(10px);
-      background: rgba(0,0,0,0.25);
-      transition: opacity 0.15s ease, border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
     }
 
-    .nav a:hover {
-      opacity: 1;
-      border-color: rgba(255,255,255,0.32);
-      background: rgba(0,0,0,0.35);
+    .nav a:hover{
       transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.30);
+      background: rgba(255,255,255,0.10);
     }
 
-    .nav a:active {
-      transform: translateY(0px);
+    /* Bottom territory line */
+    .territory{
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      font-size: 13px;
+      opacity: 0.55;
+      letter-spacing: 0.02em;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      white-space: nowrap;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Phone-specific tweaks */
-    @media (max-width: 480px) {
-      .hero { padding: 1.25rem; }
-      .nav a { width: 100%; max-width: 280px; }
+    /* Mobile tweaks */
+    @media (max-width: 480px){
+      .stack{ padding: 26px 16px; border-radius: 22px; }
+      .title{ gap: 8px; }
+      .nav a{ padding: 10px 14px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="hero">
-    <div class="content">
-    <h1 class="hero-title">
-<h1 class="hero-title">
-  Secwepemctsné́m<span class="dash">—</span><span class="kt">kt</span>
-</h1>
-<div class="hero-sub">wel me7 yews</div>
+  <div class="bg"></div>
+  <div class="vignette"></div>
 
+  <main class="hero">
+    <section class="stack">
+      <!-- FIXED ACCENTS: use precomposed characters (é, í) -->
+      <h1 class="title">
+        <span>Secwepemctsném</span>
+        <span class="dash">—</span>
+        <span class="kt">kt</span>
+      </h1>
 
-<div class="hero-english">
-  We speak Secwepemctsín forever.
-</div>
+      <div class="subline">wel me7 yews</div>
+      <p class="english">We speak Secwepemctsín forever.</p>
 
-
-      <div class="nav">
+      <nav class="nav" aria-label="Primary navigation">
         <a href="about.html">About</a>
         <a href="lessons.html">Lessons</a>
         <a href="glossary.html">Glossary</a>
-      </div>
-    </div>
+      </nav>
+    </section>
+  </main>
 
-    <div class="territory">Ne Secwepemcúl̓ecw</div>
-  </div>
+  <div class="territory">Ne Secwepemcúl̓ecw</div>
 </body>
 </html>
